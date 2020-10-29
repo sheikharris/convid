@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>{{ shopname }} | Employee </title>
+  <link rel="icon" href="images/Webalys-Kameleon.pics-Food-Dome.ico"/>
+  <link rel="stylesheet" href="#">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<style>
+.align{
+  text-align: center;
+}
+.aligndiv{
+margin:5px;
+padding-bottom: 50px;
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.landscape {
+    height: 30px;
+    width: 80px;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}
+}</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#"><h1><strong>ConVid</strong></h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Welcome,{{ username }} <span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'logout' %}">SignOut</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <br />
+  <div class = "container">
+    <br />
+    <h1 style="text-align : center;">{{ section }}-Employee | Call Logs</h1>
+    <br />
+    <hr />
+    <br />
+    <div class="container">
+      <table >
+        <tr style="background-color: lightblue;">
+          <tr>
+            <td style='padding-right : 50px;'>
+              <h6>Customer Username</h6>
+              </td>
+            <td style='padding-right : 50px;'>
+              <h6>Call Date</h6>
+              </td>
+              <td style='padding-right : 50px;'>
+                  <h6>Call Time</h6>
+                </td>
+
+            </tr>
+
+            <tr>
+              <tr>
+                <td style='padding-right : 50px;'>
+                  <b><p>sheik harris</p></b>
+                  </td>
+                <td style='padding-right : 50px;'>
+                  <p>10/26/2020</p>
+                  </td>
+                  <td style='padding-right : 50px;'>
+                      <p>11:29</p>
+                    </td>
+                    <td style='padding-right : 50px;'>
+                      <form action ="{% url 'addorder' %} ">
+                      <button type="submit" class="btn btn-dark"  style="cursor: pointer;">Add Orders</button>
+                    </form>
+                      </td>
+                </tr>
+        </table>
+        <hr style="background-color:black;">
+
+
+
+</div>
+      <hr />
+</div>
+  </body>

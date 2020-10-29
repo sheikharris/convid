@@ -1,0 +1,88 @@
+{% load static %}
+{% static "media/img" as baseurl %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ConVid | Trends</title>
+  <link rel="icon" href="images/Webalys-Kameleon.pics-Food-Dome.ico"/>
+  <link rel="stylesheet" href="#">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<style>
+.align{
+  text-align: center;
+}
+.aligndiv{
+margin:5px;
+padding-bottom: 50px;
+
+}</style>
+</head>
+<body style="background-color: ghostwhite">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:whitesmoke ;">
+    <a class="navbar-brand" href="#"><h1><strong>ConVid</strong></h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+      <form class="form-inline d-flex justify-content-center md-form form-sm" action ="trend" method="post">
+        {% csrf_token %}
+
+        <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Enter Shop Name"
+          aria-label="Search" name="search">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </form>
+
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Trending Shops and Offers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'aboutus' %}">About-ConVid</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contactus' %}">Contact-Us</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'logout' %}">SignOut</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <hr>
+  <div>
+    <br />
+    <h1 class="align">{{ topic }}</h1>
+    <br size="3" />
+    </div>
+    <div class="container">
+
+      {% for shop in shops %}
+      
+          <button type="button aligndiv" class="btn btn-light" onclick="location.href='{% url 'page' shop.id %}';" style="cursor: pointer; background-color: whitesmoke">
+          <img src="{{ shop.img.url }}" alt="{{ shop.img.url }}" style='height: auto%; width: 35%; '><br/>
+          <b>{{ shop.shop_name }}</b>
+          <p> {{ shop.bio }}</p>
+          {% if shop.status %}
+              <p style="color: green;" >OPEN</p>
+          {% else %}
+            <p style="color: darkred;" >CLOSED</p>
+              {% endif %}
+
+          </button>
+
+              <hr />
+        {% endfor %}
+
+</div>
+  </body>

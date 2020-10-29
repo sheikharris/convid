@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+{% load static %}
+{% static "media/img" as baseurl %}
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>convid-Admin | {{ shop.shop_name }}</title>
+  <link rel="icon" href="images/Webalys-Kameleon.pics-Food-Dome.ico"/>
+  <link rel="stylesheet" href="#">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<style>
+.align{
+  text-align: center;
+}
+.aligndiv{
+margin:5px;
+padding-bottom: 50px;
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.landscape {
+    height: 30px;
+    width: 80px;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}
+}</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:whitesmoke ;">
+    <a class="navbar-brand" href="#"><h1><strong>ConVid</strong></h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'aboutus' %}">About-Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contactus' %}">Contact-Us</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'logout' %}">SignOut</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br />
+  <div class = "container">
+    <br />
+    <h1 style="text-align : center;">{{ shop.shop_name }}</h1>
+    <div>
+      <br />
+      <img class="landscape" src="{{ shop.img.url }}" alt = "Image Of the Shop" style='height: 100%; width: 100%; object-fit: contain'/>
+
+      </div>
+  <hr />
+  <p> {{ shop.bio }}
+      </p>
+      <b>Phone no:</b> {{ shop.phone_no }}<br>
+      <b>Location:</b> {{ shop.location }}
+      <hr />
+      <label>
+        <button type="button" class="btn btn-dark" onclick="window.location.href = '{% url 'openshop' %}';" style="cursor: pointer;">open the shop</button>
+        <button type="button" class="btn btn-dark" onclick="window.location.href = '{% url 'closeshop' %}';" style="cursor: pointer;">close the shop</button>
+        {% if  shop.status  %}
+           <b> Shop is OPEN Now </b>
+        {% else %}
+          <b> Shop is CLOSED Now </b>
+        {% endif %}
+
+
+
+      </label>
+<hr>
+{% for i in sec  %}
+ <img src="{{ i.img.url }}" alt="{{ i.img.url }}" style='height: auto%; width: 35%; '>
+      <table style="border-collapse: separate; border-spacing: 20px">
+        <tbody>
+          <tr style="padding-right : 20px;">
+            <td rowspan="2" colspan="2">  <br> </td>
+            <td><b><em>{{ i.section_name }}</em></b></td>
+          </tr>
+          <tr>
+            <td><label>
+              <p>{{ i.description }}</p>
+              </label></td>
+          </tr>
+        </tbody>
+      </table>
+      <hr style="babackground-color: black;">
+{% endfor %}
+
+      <h1 style="text-align : center;">Settings</h1><br>
+
+        <div class="wrapper">
+  <table>
+    <tr>
+      <td style="padding-right:100px; padding-left:120px;">
+        <button type="button" class="btn btn-dark" onclick="window.location.href = '{% url 'addemp' %}';" style="cursor: pointer; ">Add Employee</button>
+      </td>
+      <td style="padding-right:100px;">
+        <button type="button" class="btn btn-dark" onclick="window.location.href='{% url 'addsection' %}';" style="cursor: pointer;">Add Sections</button>
+      </td>
+      <td style="padding-right:100px;">
+        <button type="button" class="btn btn-dark" onclick="window.location.href='{% url 'viewsection' %}';" style="cursor: pointer;">view Sections</button>
+      </td>
+      <td style="padding-right:100px;">
+        <button type="button" class="btn btn-dark" onclick="window.location.href='{% url 'viewemp' %}';" style="cursor: pointer;">view Employee</button>
+      </td>
+    </tr>
+  </table>
+          </div>
+</div>
+<br><hr>
+  </body>
+</html>
